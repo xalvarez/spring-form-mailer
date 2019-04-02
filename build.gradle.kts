@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.3.21"
     kotlin("plugin.spring") version "1.3.21"
+    kotlin("plugin.allopen") version "1.3.21"
     id("org.springframework.boot") version "2.1.3.RELEASE"
     id("io.spring.dependency-management") version "1.0.7.RELEASE"
     idea
@@ -17,6 +18,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+
+    runtime("org.webjars:webjars-locator-core")
+    runtime("org.webjars:bootstrap:4.3.1")
 
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit5"))
