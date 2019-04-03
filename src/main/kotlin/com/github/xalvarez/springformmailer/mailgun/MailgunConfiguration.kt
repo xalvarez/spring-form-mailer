@@ -1,4 +1,4 @@
-package com.github.xalvarez.springformmailer.malgun
+package com.github.xalvarez.springformmailer.mailgun
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.context.properties.ConfigurationProperties

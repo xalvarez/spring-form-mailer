@@ -2,3 +2,10 @@ spring:
   mvc:
     favicon:
       enabled: false
+
+mailgun:
+  email:
+    sender: "Spring Form Mailer <spring-form-mailer@no-reply.com>"
+    recipients: recipient@example.com
+  domain: "example.com"
+  apiKey: "dummyapikey"

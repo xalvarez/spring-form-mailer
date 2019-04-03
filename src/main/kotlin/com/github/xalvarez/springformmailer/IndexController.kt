@@ -1,5 +1,6 @@
 package com.github.xalvarez.springformmailer
 
+import com.github.xalvarez.springformmailer.mailgun.MailgunClient
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.GetMapping
@@ -7,14 +8,17 @@ import org.springframework.web.bind.annotation.PostMapping
 import javax.validation.Valid
 
 @Controller
-class IndexController {
+class IndexController(private val mailgunClient: MailgunClient) {
 
     @GetMapping
     fun index(formBody: FormBody?) = "index"
 
     @PostMapping("/submit")
     fun submit(@Valid formBody: FormBody, bindingResult: BindingResult): String {
-        return if (bindingResult.hasErrors()) "index" else "index"
-    }
+        if (bindingResult.hasErrors())
+            return "index"
 
+        mailgunClient.sendEmail(formBody.toMailgunPayload())
+        return "success"
+    }
 }
