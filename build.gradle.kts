@@ -21,7 +21,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-    runtime("org.webjars:webjars-locator-core")
+    runtime("org.webjars:webjars-locator-core:0.37")
     runtime("org.webjars:bootstrap:4.3.1")
 
     testImplementation(kotlin("test"))
