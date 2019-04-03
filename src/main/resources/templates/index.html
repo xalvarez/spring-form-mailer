@@ -71,9 +71,15 @@
                     <hr/>
                     <label th:for="comments" th:text="#{form.comments.label}"></label>
                     <textarea aria-describedby="commentsHelp" class="form-control" rows="5"
-                              th:field="*{comments}" th:required="required"
-                              th:placeholder="#{form.comments.placeholder}" th:errorclass="is-invalid"></textarea>
+                              th:field="*{comments}" th:placeholder="#{form.comments.placeholder}"
+                              th:errorclass="is-invalid"></textarea>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <button class="btn btn-primary" th:text="#{form.submit.button}" type="submit">Submit</button>
             </div>
         </div>
 
