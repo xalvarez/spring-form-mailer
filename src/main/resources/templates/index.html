@@ -4,8 +4,83 @@
     <title th:text="#{index.title}"></title>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link href="/flag-icon-css/css/flag-icon.min.css" rel="stylesheet"
+          th:href="@{/flag-icon-css/css/flag-icon.min.css}">
+    <link href="/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<div class="container-fluid">
+    <div class="row" style="margin-top: 5em">
+        <div class="col-lg-2 offset-lg-9">
+            <a href="../?lang=de"><span class="flag-icon flag-icon-de"></span></a>
+            <a href="../?lang=es"><span class="flag-icon flag-icon-es"></span></a>
+            <a href="../?lang=ca"><span class="flag-icon flag-icon-es-ct"></span></a>
+            <a href="../?lang=en"><span class="flag-icon flag-icon-gb"></span></a>
+        </div>
+    </div>
 
+    <form th:action="@{/submit}" th:object="${formBody}" method="post">
+
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="form-group">
+                    <label th:for="name" th:text="#{form.name.label}">Name</label>
+                    <input aria-describedby="nameHelp" class="form-control" th:field="*{name}"
+                           th:placeholder="#{form.name.placeholder}"
+                           type="text" th:required="required" th:errorclass="is-invalid"/>
+                    <small class="form-text text-muted" id="nameHelp" th:text="#{form.name.helptext}"></small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-3 offset-lg-3">
+                <div class="form-group">
+                    <label th:for="amountOfAdditionalAdults" th:text="#{form.amountOfAdditionalAdults.label}"></label>
+                    <input aria-describedby="amountOfAdditionalAdultsHelp" class="form-control"
+                           th:field="*{amountOfAdditionalAdults}"
+                           th:placeholder="#{form.amountOfAdditionalAdults.placeholder}"
+                           type="number" min="0" th:errorclass="is-invalid"/>
+                    <small class="form-text text-muted" id="amountOfAdditionalAdultsHelp"
+                           th:text="#{form.amountOfAdditionalAdults.helptext}"></small>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label class="control-label" th:for="amountOfAdditionalChildren"
+                           th:text="#{form.amountOfAdditionalChildren.label}"></label>
+                    <input aria-describedby="amountOfAdditionalChildrenHelp" class="form-control"
+                           th:field="*{amountOfAdditionalChildren}"
+                           th:placeholder="#{form.amountOfAdditionalChildren.placeholder}"
+                           type="number" min="0" th:errorclass="is-invalid"/>
+                    <small class="form-text text-muted" id="amountOfAdditionalChildrenHelp"
+                           th:text="#{form.amountOfAdditionalChildren.helptext}"></small>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="form-group">
+                    <hr/>
+                    <label th:for="comments" th:text="#{form.comments.label}"></label>
+                    <textarea aria-describedby="commentsHelp" class="form-control" rows="5"
+                              th:field="*{comments}" th:required="required"
+                              th:placeholder="#{form.comments.placeholder}" th:errorclass="is-invalid"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script src="/webjars/jquery/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script src="/webjars/popper.js/umd/popper.min.js" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

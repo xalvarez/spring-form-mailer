@@ -5,14 +5,14 @@ import javax.validation.constraints.NotEmpty
 
 data class FormBody(
 
-    @NotEmpty
-    private val name: String,
+    @field:NotEmpty
+    var name: String = "",
 
-    @Min(0)
-    private val amountOfAdditionalAdults: Int,
+    @field:Min(0)
+    var amountOfAdditionalAdults: Int = 0,
 
-    @Min(0)
-    private val amountOfAdditionalChildren: Int,
+    @field:Min(0)
+    var amountOfAdditionalChildren: Int = 0,
 
-    private val additionalInformation: String
+    var comments: String = ""
 )
