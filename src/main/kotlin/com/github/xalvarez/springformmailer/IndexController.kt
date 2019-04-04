@@ -10,15 +10,14 @@ import javax.validation.Valid
 @Controller
 class IndexController(private val mailgunClient: MailgunClient) {
 
-    @GetMapping
-    fun index(formBody: FormBody?) = "index"
+    @GetMapping("")
+    fun index(formBody: FormBody) = "index"
 
     @PostMapping("/submit")
     fun submit(@Valid formBody: FormBody, bindingResult: BindingResult): String {
         if (bindingResult.hasErrors())
             return "index"
 
-        mailgunClient.sendEmail(formBody.toMailgunPayload())
-        return "success"
+        return if (mailgunClient.sendEmail(formBody.toMailgunPayload())) "success" else "error"
     }
 }
