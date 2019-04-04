@@ -9,17 +9,17 @@ import org.springframework.web.reactive.function.client.WebClient.create
 import org.springframework.web.reactive.function.client.WebClientException
 
 @Component
-class MailgunClient(private val mailgunConfiguration: MailgunConfiguration) {
+class MailgunClient(val mailgunConfiguration: MailgunConfiguration) {
 
     val log: Logger = LoggerFactory.getLogger(javaClass)
 
-    fun sendEmail(mailgunPayload: MailgunPayload) {
+    fun sendEmail(mailgunPayload: MailgunPayload): Boolean {
         try {
             log.info(mailgunPayload.toString())
-            log.info(mailgunConfiguration.mailgunEndpointUrl)
+            log.info(mailgunConfiguration.getMailgunEndpointUrl())
             val responseBody = create()
                 .post()
-                .uri(mailgunConfiguration.mailgunEndpointUrl)
+                .uri(mailgunConfiguration.getMailgunEndpointUrl())
                 .contentType(APPLICATION_FORM_URLENCODED)
                 .syncBody(buildFormData(mailgunPayload))
                 .headers { it.setBasicAuth("api", mailgunConfiguration.apiKey) }
@@ -27,8 +27,10 @@ class MailgunClient(private val mailgunConfiguration: MailgunConfiguration) {
                 .bodyToMono(String::class.java)
                 .block()
             log.info("E-mail submission was successful. Response body: '$responseBody'")
+            return true
         } catch (exception: WebClientException) {
             log.error("E-mail submission failed.");
+            return false
         }
     }
 
@@ -37,7 +39,8 @@ class MailgunClient(private val mailgunConfiguration: MailgunConfiguration) {
         formData.add("from", mailgunConfiguration.sender)
         mailgunConfiguration.recipients.forEach { formData.add("to", it) }
         formData.add("subject", "New data has been submitted")
-        formData.add("text", """
+        formData.add(
+            "text", """
             ${mailgunPayload.name} has submitted the following data:
             Amount of additional adults: ${mailgunPayload.amountOfAdditionalAdults}
             Amount of additional children: ${mailgunPayload.amountOfAdditionalChildren}

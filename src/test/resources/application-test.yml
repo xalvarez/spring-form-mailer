@@ -1,0 +1,2 @@
+mailgun:
+  domain: "http://localhost:18080"

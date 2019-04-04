@@ -27,8 +27,9 @@ dependencies {
     runtime("org.webjars:bootstrap:4.3.1")
 
     testImplementation(kotlin("test"))
-    testImplementation(kotlin("test-junit5"))
-    testImplementation("org.junit.jupiter:junit-jupiter:5.4.1")
+    testImplementation(kotlin("test-junit"))
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.github.tomakehurst:wiremock:2.22.0")
 }
 
 tasks.withType<Test> {

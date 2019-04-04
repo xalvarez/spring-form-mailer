@@ -18,8 +18,6 @@ class MailgunConfiguration {
     @NotEmpty
     lateinit var domain: String
 
-    val mailgunEndpointUrl: String by lazy { "https://api.mailgun.net/v3/$domain/messages" }
-
     @NotNull
     @Value("\${mailgun.email.recipients}")
     lateinit var recipients: Array<String>
@@ -27,4 +25,7 @@ class MailgunConfiguration {
     @NotEmpty
     lateinit var apiKey: String
 
+    fun getMailgunEndpointUrl(): String {
+        return if (domain.contains("localhost")) domain else "https://api.mailgun.net/v3/$domain/messages"
+    }
 }
