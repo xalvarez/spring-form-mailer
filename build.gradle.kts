@@ -21,6 +21,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.slf4j:slf4j-api:1.7.26")
 
     runtime("org.webjars:webjars-locator-core:0.37")
     runtime("org.webjars:bootstrap:4.3.1")

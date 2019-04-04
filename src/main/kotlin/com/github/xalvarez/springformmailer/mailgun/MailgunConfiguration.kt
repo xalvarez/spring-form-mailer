@@ -13,18 +13,18 @@ class MailgunConfiguration {
 
     @Email
     @Value("\${mailgun.email.sender}")
-    private lateinit var sender: String
+    lateinit var sender: String
 
     @NotEmpty
-    private lateinit var domain: String
+    lateinit var domain: String
 
-    private val mailgunEndpointUrl: String by lazy { "https://api.mailgun.net/v3/$domain/messages" }
+    val mailgunEndpointUrl: String by lazy { "https://api.mailgun.net/v3/$domain/messages" }
 
     @NotNull
     @Value("\${mailgun.email.recipients}")
-    private lateinit var recipients: Array<String>
+    lateinit var recipients: Array<String>
 
     @NotEmpty
-    private lateinit var apiKey: String
+    lateinit var apiKey: String
 
 }
