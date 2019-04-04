@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm") version "1.3.21"
     kotlin("plugin.spring") version "1.3.21"
     kotlin("plugin.allopen") version "1.3.21"
+    kotlin("plugin.noarg") version "1.3.21"
     id("org.springframework.boot") version "2.1.3.RELEASE"
     id("io.spring.dependency-management") version "1.0.7.RELEASE"
     idea
@@ -44,4 +45,9 @@ val compileTestKotlin by tasks.getting(KotlinCompile::class) {
         jvmTarget = "1.8"
         javaParameters = true
     }
+}
+
+noArg {
+    annotation("org.springframework.boot.context.properties.ConfigurationProperties")
+    annotation("com.fasterxml.jackson.annotation.JsonTypeName")
 }
