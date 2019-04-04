@@ -8,7 +8,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.junit4.SpringRunner
+import javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST
 import javax.servlet.http.HttpServletResponse.SC_OK
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 @SpringFormMailerApplicationTest
@@ -32,7 +34,19 @@ class MailgunClientTest {
 
         // Then
         assertTrue(hasEmailBeenSent)
+    }
 
+    @Test
+    fun `should return error on failed e-mail delivery`() {
+        // Given
+        val mailgunPayload = givenMailgunPayload()
+        givenNegativeMailgunResponse()
+
+        // When
+        val hasEmailBeenSent = whenSendingEmail(mailgunPayload)
+
+        // Then
+        assertFalse(hasEmailBeenSent)
     }
 
     private fun givenMailgunPayload() = MailgunPayload(
@@ -44,6 +58,10 @@ class MailgunClientTest {
 
     private fun givenPositiveMailgunResponse() {
         stubFor(post(anyUrl()).willReturn(aResponse().withStatus(SC_OK)))
+    }
+
+    private fun givenNegativeMailgunResponse() {
+        stubFor(post(anyUrl()).willReturn(aResponse().withStatus(SC_BAD_REQUEST)))
     }
 
     private fun whenSendingEmail(mailgunPayload: MailgunPayload) = mailgunClient.sendEmail(mailgunPayload)

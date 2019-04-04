@@ -27,7 +27,6 @@ dependencies {
     runtime("org.webjars:bootstrap:4.3.1")
 
     testImplementation(kotlin("test"))
-    testImplementation(kotlin("test-junit"))
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("com.github.tomakehurst:wiremock:2.22.0")
 }
