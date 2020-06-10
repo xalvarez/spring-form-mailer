@@ -8,4 +8,5 @@ mailgun:
     sender: "Spring Form Mailer <spring-form-mailer@no-reply.com>"
     recipients: recipient@example.com
   domain: "example.com"
+  baseUrl: "localhost:18080"
   apiKey: "dummyapikey"
