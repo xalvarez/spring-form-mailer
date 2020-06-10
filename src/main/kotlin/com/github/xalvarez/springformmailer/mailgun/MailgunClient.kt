@@ -15,11 +15,9 @@ class MailgunClient(val mailgunConfiguration: MailgunConfiguration) {
 
     fun sendEmail(mailgunPayload: MailgunPayload): Boolean {
         try {
-            log.info(mailgunPayload.toString())
-            log.info(mailgunConfiguration.getMailgunEndpointUrl())
             val responseBody = create()
                 .post()
-                .uri(mailgunConfiguration.getMailgunEndpointUrl())
+                .uri(mailgunConfiguration.baseUrl)
                 .contentType(APPLICATION_FORM_URLENCODED)
                 .syncBody(buildFormData(mailgunPayload))
                 .headers { it.setBasicAuth("api", mailgunConfiguration.apiKey) }

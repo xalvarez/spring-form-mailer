@@ -2,4 +2,5 @@ mailgun:
   email:
     recipients: "${MAILGUN_EMAIL_RECIPIENTS:'<MAILGUN_EMAIL_RECIPIENTS environment variable is not set>'}"
   domain: "${MAILGUN_DOMAIN:'<MAILGUN_DOMAIN environment variable is not set>'}"
+  baseUrl: "https://api.mailgun.net/v3/${MAILGUN_DOMAIN:'<MAILGUN_DOMAIN environment variable is not set>'}/messages"
   apiKey: "${MAILGUN_API_KEY:'<MAILGUN_API_KEY environment variable is not set>'}"

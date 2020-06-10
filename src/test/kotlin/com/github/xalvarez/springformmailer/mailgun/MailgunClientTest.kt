@@ -25,27 +25,21 @@ class MailgunClientTest {
 
     @Test
     fun `should send e-mail`() {
-        // Given
         val mailgunPayload = givenMailgunPayload()
         givenPositiveMailgunResponse()
 
-        // When
         val hasEmailBeenSent = whenSendingEmail(mailgunPayload)
 
-        // Then
         assertTrue(hasEmailBeenSent)
     }
 
     @Test
     fun `should return error on failed e-mail delivery`() {
-        // Given
         val mailgunPayload = givenMailgunPayload()
         givenNegativeMailgunResponse()
 
-        // When
         val hasEmailBeenSent = whenSendingEmail(mailgunPayload)
 
-        // Then
         assertFalse(hasEmailBeenSent)
     }
 
